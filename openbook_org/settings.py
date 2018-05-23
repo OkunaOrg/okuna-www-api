@@ -11,26 +11,33 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import raven
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
+# Environment flags
+ENVIRONMENT = os.environ.get('ENVIRONMENT')
 
-# SECURITY WARNING: keep the secret key used in production secret!
+IS_PRODUCTION_ENVIRONMENT = True if ENVIRONMENT == 'production' else False
+
+DEBUG = not IS_PRODUCTION_ENVIRONMENT
+
+# Django secrets
+
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Hosts
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [] if not IS_PRODUCTION_ENVIRONMENT else [os.environ.get('DJANGO_ALLOWED_HOSTNAME')]
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'rest_framework',
+    'openbook_org_contact',
+    'raven.contrib.django.raven_compat'
 ]
 
 MIDDLEWARE = [
@@ -54,6 +61,33 @@ DATABASES = {}
 
 AUTH_PASSWORD_VALIDATORS = []
 
+# Sentry Config
+
+RAVEN_CONFIG = {
+    'dsn': os.environ.get('SENTRY_DSN'),
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+}
+
+# Mailgun config
+
+MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY')
+
+# Django rest framework config
+
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': [],
+    'UNAUTHENTICATED_USER': None
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -71,3 +105,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# App config
+
+OPENBOOK_CONTACT_FORM_MAIL = os.environ.get('OPENBOOK_CONTACT_FORM_MAIL')
