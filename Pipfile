@@ -13,6 +13,7 @@ name = "pypi"
 
 django = "*"
 python-dotenv = "*"
+djangorestframework = "*"
 
 
 [requires]
