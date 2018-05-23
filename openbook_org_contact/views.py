@@ -21,9 +21,6 @@ class Contact(APIView):
         return self.on_valid_request_data(request, serializer.validated_data)
 
     def on_valid_request_data(self, request, data):
-        if not self.has_valid_recaptcha(request, data):
-            raise PermissionDenied('Failed recaptcha')
-
         sender = data.get('email')
         subject = data.get('subject')
         message = data.get('message')
@@ -41,6 +38,3 @@ class Contact(APIView):
             logger.exception('Contact failed:', e)
             raise APIException('The server could not deliver your message')
         return ApiMessageResponse('Message will be delivered. Thank you.')
-
-    def has_valid_recaptcha(self, request, data):
-        return True
