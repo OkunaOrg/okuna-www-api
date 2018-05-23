@@ -17,11 +17,11 @@ This is the work in progress backend code for the new [www.open-book.org](https:
 
 ## Requirements
 
-* [Node](https://nodejs.org) > 7.6
+* [Pipenv](https://github.com/pypa/pipenv)
 
 ## Project overview
 
-The project is a Node.js express application. 
+The project is a [Django](https://www.djangoproject.com/start/) application. 
 
 ## Contributing
 
@@ -68,18 +68,19 @@ git clone git@github.com:OpenBookOrg/openbook-org-backend.git
 
 Install the dependencies
 ```bash
-$ npm install
+$ pipenv install
 ```
 
-Serve with hot reload at localhost:8080
+Activate the pipenv environment
 ```bash
-$ npm run dev
+pipenv shell
 ```
 
-Build for production and launch server
+Serve with hot reload at http://127.0.0.1:8000
 ```bash
-npm start
+$ python manage.py runserver
 ```
+
 <br>
 
 #### Happy coding 🎉!
