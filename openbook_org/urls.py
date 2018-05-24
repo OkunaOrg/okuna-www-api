@@ -18,10 +18,6 @@ from django.urls import path, include
 from openbook_org_contact.views import Contact
 
 
-api_patterns = [
-    path('contact/', Contact.as_view()),
-]
-
 urlpatterns = [
-    path('api/', include(api_patterns))
+    path('contact/', Contact.as_view())
 ]
