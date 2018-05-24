@@ -66,6 +66,13 @@ Clone the repository
 git clone git@github.com:OpenBookOrg/openbook-org-backend.git
 ```
 
+Create and configure your .env file
+
+```bash
+cp sample.env .env
+nano .env
+```
+
 Install the dependencies
 ```bash
 $ pipenv install
