@@ -75,6 +75,10 @@ if IS_PRODUCTION_ENVIRONMENT:
 
 MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY')
 
+# Google re-captcha config
+
+GOOGLE_RECAPTCHA_SECRET_KEY = os.environ.get('GOOGLE_RECAPTCHA_SECRET_KEY')
+
 # Django rest framework config
 
 REST_FRAMEWORK = {
