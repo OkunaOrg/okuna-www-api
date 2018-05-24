@@ -12,7 +12,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 OPENBOOK_CONTACT_FORM_MAIL = settings.OPENBOOK_CONTACT_FORM_MAIL
-
+GOOGLE_RECAPTCHA_SECRET_KEY = settings.GOOGLE_RECAPTCHA_SECRET_KEY
 
 class Contact(APIView):
     serializer_class = ContactSerializer
@@ -24,8 +24,8 @@ class Contact(APIView):
 
     def on_valid_request_data(self, request, data):
 
-        if not self.has_valid_recaptcha(request, data):
-            raise PermissionDenied('Failed recaptcha')
+        if not self.has_valid_captcha(request, data):
+            raise PermissionDenied('Failed captcha')
 
         sender = data.get('email')
         subject = data.get('subject')
@@ -45,23 +45,24 @@ class Contact(APIView):
             raise APIException('The server could not deliver your message')
         return ApiMessageResponse('Message will be delivered. Thank you.')
 
-    def has_valid_recaptcha(self, request, data):
+    def has_valid_captcha(self, request, data):
         ip, is_routable = get_client_ip(request, proxy_count=1 if settings.IS_PRODUCTION_ENVIRONMENT else 0)
         if not ip:
             raise PermissionDenied('No IP address could be determined for sender')
         else:
             if is_routable or not settings.IS_PRODUCTION_ENVIRONMENT:
                 try:
-                    recaptcha_response = requests.post('https://www.google.com/recaptcha/api/siteverify', data={
-                        'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
-                        'response': data.get('recaptcha'),
+                    captcha = data.get('captcha')
+                    captcha_response = requests.post('https://www.google.com/recaptcha/api/siteverify', data={
+                        'secret': GOOGLE_RECAPTCHA_SECRET_KEY,
+                        'response': captcha,
                         'remoteip': ip
                     })
                 except requests.exceptions.RequestException as e:
-                    raise APIException('Could verify recaptcha with google')
+                    raise APIException('Could verify captcha with google')
 
-                recaptcha_data = recaptcha_response.json()
+                captcha_data = captcha_response.json()
 
-                return recaptcha_data.get('success')
+                return captcha_data.get('success')
             else:
                 raise PermissionDenied('No public IP address could be determined for sender')
