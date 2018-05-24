@@ -11,11 +11,12 @@ name = "pypi"
 
 [packages]
 
-Django = "*"
+django = "*"
 python-dotenv = "*"
 djangorestframework = "*"
 requests = "*"
 raven = "*"
+django-ipware = "*"
 
 
 [requires]
