@@ -69,10 +69,7 @@ AUTH_PASSWORD_VALIDATORS = []
 
 if IS_PRODUCTION_ENVIRONMENT:
     RAVEN_CONFIG = {
-        'dsn': os.environ.get('SENTRY_DSN'),
-        # If you are using git, you can also automatically configure the
-        # release based on the git info.
-        'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+        'dsn': os.environ.get('SENTRY_DSN')
     }
 
 # Mailgun config
