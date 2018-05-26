@@ -46,7 +46,7 @@ class Contact(APIView):
         return ApiMessageResponse('Message will be delivered. Thank you.')
 
     def has_valid_captcha(self, request, data):
-        ip, is_routable = get_client_ip(request, proxy_count=1 if settings.IS_PRODUCTION_ENVIRONMENT else 0)
+        ip, is_routable = get_client_ip(request)
         if not ip:
             raise PermissionDenied('No IP address could be determined for sender')
         else:
