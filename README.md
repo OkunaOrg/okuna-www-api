@@ -1,6 +1,6 @@
 <img alt="Open book logo" src="https://i.snag.gy/conKBO.jpg" width="200">
 
-![Human Friendly](https://img.shields.io/badge/human-friendly-brightgreen.svg) ![Privacy](https://img.shields.io/badge/privacy-first-690ddc.svg)
+![Human Friendly](https://img.shields.io/badge/human-friendly-brightgreen.svg) ![Privacy](https://img.shields.io/badge/privacy-first-690ddc.svg) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/openbook-org/Lobby?source=orgpage)
 
 The backend code for [api.open-book.org](https://api.open-book.org).
 
