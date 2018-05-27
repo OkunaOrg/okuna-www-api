@@ -1,8 +1,8 @@
-<img alt="Open book logo" src="https://github.com/OpenBookOrg/www.open-book.org/blob/master/src/assets/logo-repos.png?raw=true" width="250">
+<img alt="Open book logo" src="https://i.snag.gy/conKBO.jpg" width="200">
 
-## What is this?
+![Human Friendly](https://img.shields.io/badge/human-friendly-brightgreen.svg) ![Privacy](https://img.shields.io/badge/privacy-first-690ddc.svg)
 
-This is the work in progress backend code for the new [www.open-book.org](https://openbook-org-backend).
+The backend code for [api.open-book.org](https://api.open-book.org).
 
 ## Table of contents
 
