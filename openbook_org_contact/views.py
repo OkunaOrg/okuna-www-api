@@ -1,18 +1,25 @@
 # Create your views here.
 from rest_framework.views import APIView
+from rest_framework.response import Response
 from rest_framework.exceptions import APIException, PermissionDenied
 from django.conf import settings
 from ipware import get_client_ip
 
 from openbook_org_contact.responses import ApiMessageResponse
-from openbook_org_contact.serializers import ContactSerializer
+from openbook_org_contact.serializers import ContactSerializer, WaitlistSerializer
 import requests
+from mailchimp3 import MailChimp
 import logging
+import json
 
 logger = logging.getLogger(__name__)
 
 OPENBOOK_CONTACT_FORM_MAIL = settings.OPENBOOK_CONTACT_FORM_MAIL
 GOOGLE_RECAPTCHA_SECRET_KEY = settings.GOOGLE_RECAPTCHA_SECRET_KEY
+MAILCHIMP_WAITLIST_ID = '94160c5dc2'
+MAILCHIMP_API_KEY = settings.MAILCHIMP_API_KEY
+
+client = MailChimp(mc_api=MAILCHIMP_API_KEY, mc_user='YOUR_USERNAME')
 
 class Contact(APIView):
     serializer_class = ContactSerializer
@@ -62,7 +69,32 @@ class Contact(APIView):
                     raise APIException('Could verify captcha with google')
 
                 captcha_data = captcha_response.json()
-
                 return captcha_data.get('success')
             else:
                 raise PermissionDenied('No public IP address could be determined for sender')
+
+
+class WaitlistSubscribeView(APIView):
+
+    def post(self, request):
+        serializer = WaitlistSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        try:
+            client.lists.update_members(list_id=MAILCHIMP_WAITLIST_ID, data={
+                'members': [
+                    {
+                        'email_address': serializer.validated_data['email'],
+                        'status': 'subscribed'
+                    }
+                ]
+            })
+            total = client.lists.members.all(MAILCHIMP_WAITLIST_ID, get_all=True)
+            count = len(total['members'])
+
+        except requests.exceptions.RequestException as e:
+            raise APIException('Could not subscribe to waitlist')
+
+        return Response({
+            'count': count
+        })

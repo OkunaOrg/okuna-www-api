@@ -6,3 +6,7 @@ class ContactSerializer(serializers.Serializer):
     message = serializers.CharField(min_length=10, max_length=1000, required=True)
     email = serializers.EmailField(required=True)
     captcha = serializers.CharField(required=True)
+
+
+class WaitlistSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
