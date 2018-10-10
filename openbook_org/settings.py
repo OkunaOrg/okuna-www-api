@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-import raven
+import sentry_sdk
+sentry_sdk.init("https://b4e45e84fa73420d91989e9122d08e4d@sentry.io/1212322")
 
 from dotenv import load_dotenv, find_dotenv
 
@@ -41,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'rest_framework',
     'openbook_org_contact',
-    'raven.contrib.django.raven_compat'
+    'mailchimp3'
 ]
 
 MIDDLEWARE = [
@@ -66,15 +67,16 @@ DATABASES = {}
 AUTH_PASSWORD_VALIDATORS = []
 
 # Sentry Config
+#
+# if IS_PRODUCTION_ENVIRONMENT:
+#     RAVEN_CONFIG = {
+#         'dsn': os.environ.get('SENTRY_DSN')
+#     }
 
-if IS_PRODUCTION_ENVIRONMENT:
-    RAVEN_CONFIG = {
-        'dsn': os.environ.get('SENTRY_DSN')
-    }
-
-# Mailgun config
+# Mail config
 
 MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY')
+MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
 
 # Google re-captcha config
 
