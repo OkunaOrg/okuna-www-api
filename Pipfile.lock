@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "eb24450324f74216c0d8bb5e9bca6b199af09e27ed953db030fc3c5432851681"
+            "sha256": "08ccf5771a50abe6b209934463a94c157183ec0690c7f9a491ae9a3573b34773"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -32,11 +32,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:04f2e423f2e60943c02bd2959174b844f7d1bcd19eabb7f8e4282999958021fd",
-                "sha256:e1cc1cd6b658aa4e052f5f2b148bfda08091d7c3558529708342e37e4e33f72c"
+                "sha256:acdcc1f61fdb0a0c82a1d3bf1879a414e7732ea894a7632af7f6d66ec7ab5bb3",
+                "sha256:efbcad7ebb47daafbcead109b38a5bd519a3c3cd92c6ed0f691ff97fcdd16b45"
             ],
             "index": "pypi",
-            "version": "==2.1.1"
+            "version": "==2.1.2"
         },
         "django-ipware": {
             "hashes": [
@@ -62,11 +62,11 @@
         },
         "mailchimp3": {
             "hashes": [
-                "sha256:0f3e7b1c5d7594c2d4f7b45786a972629488d1764c951adaf1add71268034c37",
-                "sha256:7308bca8a0e6c2dbf9b70c50cd16fca85968273f75020206339b642e5ac3a8b3"
+                "sha256:12dcb25e9243a11404d34c91256ba0fc5aff3dc54ec9c5e2af077bd43d4dd5fb",
+                "sha256:77fa4e8587abfc145394a53f844822c5660d0b4dffbcc162700e02be275183c2"
             ],
             "index": "pypi",
-            "version": "==3.0.5"
+            "version": "==3.0.6"
         },
         "python-dotenv": {
             "hashes": [
@@ -93,11 +93,11 @@
         },
         "sentry-sdk": {
             "hashes": [
-                "sha256:4cf67f901fd39041cd58fe8ce5e11336c71cb3dece3cea8bc081fc2f9c1ba57a",
-                "sha256:87e8a8e21eae401961a9646a46b3702b0adff7efbae93559aff345c46c93d745"
+                "sha256:4a021782d74c35bd35ca90f25f9c1c14ae45137f496c5835d361cd02a637a45a",
+                "sha256:68091ad8200dac306052e389705357b6758744253951f05496284e21284f3194"
             ],
             "index": "pypi",
-            "version": "==0.3.6"
+            "version": "==0.4.1"
         },
         "urllib3": {
             "hashes": [
