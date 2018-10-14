@@ -1,12 +1,35 @@
-certifi==2018.8.24
-chardet==3.0.4
-django-ipware==2.1.0
-django==2.1.2
-djangorestframework==3.8.2
-idna==2.7
-mailchimp3==3.0.6
-python-dotenv==0.9.1
-pytz==2018.5
-requests==2.19.1
-sentry-sdk==0.4.1
-urllib3==1.23
+certifi==2018.8.24 \
+    --hash=sha256:376690d6f16d32f9d1fe8932551d80b23e9d393a8578c5633a2ed39a64861638 \
+    --hash=sha256:456048c7e371c089d0a77a5212fb37a2c2dce1e24146e3b7e0261736aaeaa22a
+chardet==3.0.4 \
+    --hash=sha256:84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae \
+    --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691
+django-ipware==2.1.0 \
+    --hash=sha256:a7c7a8fd019dbdc9c357e6e582f65034e897572fc79a7e467674efa8aef9d00b
+Django==2.1.2 \
+    --hash=sha256:acdcc1f61fdb0a0c82a1d3bf1879a414e7732ea894a7632af7f6d66ec7ab5bb3 \
+    --hash=sha256:efbcad7ebb47daafbcead109b38a5bd519a3c3cd92c6ed0f691ff97fcdd16b45
+djangorestframework==3.8.2 \
+    --hash=sha256:b6714c3e4b0f8d524f193c91ecf5f5450092c2145439ac2769711f7eba89a9d9 \
+    --hash=sha256:c375e4f95a3a64fccac412e36fb42ba36881e52313ec021ef410b40f67cddca4
+idna==2.7 \
+    --hash=sha256:156a6814fb5ac1fc6850fb002e0852d56c0c8d2531923a51032d1b70760e186e \
+    --hash=sha256:684a38a6f903c1d71d6d5fac066b58d7768af4de2b832e426ec79c30daa94a16
+mailchimp3==3.0.6 \
+    --hash=sha256:12dcb25e9243a11404d34c91256ba0fc5aff3dc54ec9c5e2af077bd43d4dd5fb \
+    --hash=sha256:77fa4e8587abfc145394a53f844822c5660d0b4dffbcc162700e02be275183c2
+python-dotenv==0.9.1 \
+    --hash=sha256:122290a38ece9fe4f162dc7c95cae3357b983505830a154d3c98ef7f6c6cea77 \
+    --hash=sha256:4a205787bc829233de2a823aa328e44fd9996fedb954989a21f1fc67c13d7a77
+pytz==2018.5 \
+    --hash=sha256:a061aa0a9e06881eb8b3b2b43f05b9439d6583c206d0a6c340ff72a7b6669053 \
+    --hash=sha256:ffb9ef1de172603304d9d2819af6f5ece76f2e85ec10692a524dd876e72bf277
+requests==2.19.1 \
+    --hash=sha256:63b52e3c866428a224f97cab011de738c36aec0185aa91cfacd418b5d58911d1 \
+    --hash=sha256:ec22d826a36ed72a7358ff3fe56cbd4ba69dd7a6718ffd450ff0e9df7a47ce6a
+sentry-sdk==0.4.1 \
+    --hash=sha256:4a021782d74c35bd35ca90f25f9c1c14ae45137f496c5835d361cd02a637a45a \
+    --hash=sha256:68091ad8200dac306052e389705357b6758744253951f05496284e21284f3194
+urllib3==1.23 \
+    --hash=sha256:a68ac5e15e76e7e5dd2b8f94007233e01effe3e50e8daddf69acfd81cb686baf \
+    --hash=sha256:b5725a0bd4ba422ab0e66e89e030c806576753ea3ee08554382c14e685d117b5
