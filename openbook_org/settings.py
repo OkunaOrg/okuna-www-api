@@ -71,13 +71,6 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = []
 
-# Sentry Config
-#
-# if IS_PRODUCTION_ENVIRONMENT:
-#     RAVEN_CONFIG = {
-#         'dsn': os.environ.get('SENTRY_DSN')
-#     }
-
 # Mail config
 
 MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY')
