@@ -19,7 +19,6 @@ GOOGLE_RECAPTCHA_SECRET_KEY = settings.GOOGLE_RECAPTCHA_SECRET_KEY
 MAILCHIMP_WAITLIST_ID = '94160c5dc2'
 MAILCHIMP_API_KEY = settings.MAILCHIMP_API_KEY
 
-client = MailChimp(mc_api=MAILCHIMP_API_KEY, mc_user='YOUR_USERNAME')
 
 class Contact(APIView):
     serializer_class = ContactSerializer
@@ -79,6 +78,7 @@ class WaitlistSubscribeView(APIView):
     def post(self, request):
         serializer = WaitlistSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        client = MailChimp(mc_api=MAILCHIMP_API_KEY, mc_user='YOUR_USERNAME')
 
         try:
             client.lists.update_members(list_id=MAILCHIMP_WAITLIST_ID, data={
@@ -89,6 +89,7 @@ class WaitlistSubscribeView(APIView):
                     }
                 ]
             })
+
             total = client.lists.members.all(MAILCHIMP_WAITLIST_ID, get_all=True)
             count = len(total['members'])
 
