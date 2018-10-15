@@ -71,7 +71,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = []
 
-# Mail config
+# Mail config 
 
 MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY')
 MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
