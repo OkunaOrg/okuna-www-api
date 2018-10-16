@@ -9,10 +9,16 @@ import json
 
 
 class TestContactView(APITestCase):
+    """
+    Contact API
+    """
 
     contact_url = reverse('contact')
 
     def test_contact_form_successfully_submitted(self):
+        """
+         Should submit valid contact info successfully
+        """
         with mock.patch.object(Contact, 'has_valid_captcha', return_value=True):
             class_instance = Contact()
             self.assertTrue(class_instance.has_valid_captcha(request={}, data={}))
@@ -28,6 +34,9 @@ class TestContactView(APITestCase):
             self.assertTrue(response.json()["message"], "Message will be delivered. Thank you.")
 
     def test_contact_form_missing_captcha_error(self):
+        """
+        Should return 400 with missing captcha
+        """
         with mock.patch.object(Contact, 'has_valid_captcha', return_value=True):
             class_instance = Contact()
             self.assertTrue(class_instance.has_valid_captcha(request={}, data={}))
@@ -41,6 +50,60 @@ class TestContactView(APITestCase):
 
             self.assertTrue(response.status_code, status.HTTP_400_BAD_REQUEST)
             self.assertTrue(response.json()["captcha"], "This field is required.")
+
+    def test_contact_form_missing_email_error(self):
+        """
+        Should return 400 with missing email
+        """
+        with mock.patch.object(Contact, 'has_valid_captcha', return_value=True):
+            class_instance = Contact()
+            self.assertTrue(class_instance.has_valid_captcha(request={}, data={}))
+            contact_data = {
+                "captcha": "myRandomCaptcha",
+                "subject": "mySubject",
+                "message": "myMessageThatIsAtLeast10Chars"
+            }
+            response = self.client.post(self.contact_url, data=json.dumps(contact_data),
+                                        content_type='application/json')
+
+            self.assertTrue(response.status_code, status.HTTP_400_BAD_REQUEST)
+            self.assertTrue(response.json()["email"], "This field is required.")
+
+    def test_contact_form_missing_subject_error(self):
+        """
+        Should return 400 with missing subject
+        """
+        with mock.patch.object(Contact, 'has_valid_captcha', return_value=True):
+            class_instance = Contact()
+            self.assertTrue(class_instance.has_valid_captcha(request={}, data={}))
+            contact_data = {
+                "captcha": "myRandomCaptcha",
+                "email": "testing@test.com",
+                "message": "myMessageThatIsAtLeast10Chars"
+            }
+            response = self.client.post(self.contact_url, data=json.dumps(contact_data),
+                                        content_type='application/json')
+
+            self.assertTrue(response.status_code, status.HTTP_400_BAD_REQUEST)
+            self.assertTrue(response.json()["subject"], "This field is required.")
+
+    def test_contact_form_missing_message_error(self):
+        """
+        Should return 400 with missing message
+        """
+        with mock.patch.object(Contact, 'has_valid_captcha', return_value=True):
+            class_instance = Contact()
+            self.assertTrue(class_instance.has_valid_captcha(request={}, data={}))
+            contact_data = {
+                "captcha": "myRandomCaptcha",
+                "email": "testing@test.com",
+                "subject": "mySubject"
+            }
+            response = self.client.post(self.contact_url, data=json.dumps(contact_data),
+                                        content_type='application/json')
+
+            self.assertTrue(response.status_code, status.HTTP_400_BAD_REQUEST)
+            self.assertTrue(response.json()["message"], "This field is required.")
 
 
 class MockMailChimpListMembers:
@@ -74,10 +137,16 @@ class MockMailChimp:
 
 
 class TestWaitlistSubscribeView(APITestCase):
+    """
+    Waitlist API
+    """
 
     subscribe_url = reverse('waitlist_subscribe')
 
     def test_subscribe_successfully(self):
+        """
+        Should subscribe successfully to waitlist
+        """
 
         subscribe_data = {
             "email": "myemail@mydomain.com"
@@ -87,4 +156,17 @@ class TestWaitlistSubscribeView(APITestCase):
                                     content_type='application/json')
             self.assertTrue(response.status_code, status.HTTP_200_OK)
             self.assertTrue(response.content.count, 3)
+
+    def test_invalid_email(self):
+        """
+        Should return 400 with invalid email
+        """
+
+        subscribe_data = {
+            "email": "myemai"
+        }
+        with patch('openbook_org_contact.views.MailChimp', return_value=MockMailChimp):
+            response = self.client.post(self.subscribe_url, data=json.dumps(subscribe_data),
+                                        content_type='application/json')
+            self.assertTrue(response.status_code, status.HTTP_400_BAD_REQUEST)
 
