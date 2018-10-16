@@ -13,6 +13,7 @@ requests = "*"
 django-ipware = "*"
 "mailchimp3" = "*"
 sentry-sdk = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.6"
