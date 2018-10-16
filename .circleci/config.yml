@@ -57,4 +57,4 @@ jobs:
           ./cc-test-reporter before-build
           python manage.py test
           # upload test report to Code Climate using `after-build`
-                      ./cc-test-reporter after-build --exit-code $?
+                      ./cc-test-reporter after-build -t coverage.py --exit-code $?
