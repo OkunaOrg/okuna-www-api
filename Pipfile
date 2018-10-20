@@ -17,6 +17,7 @@ coverage = "*"
 django-nose = "*"
 nose = "*"
 pinocchio = "*"
+colorama = "*"
 
 [requires]
 python_version = "3.6"
