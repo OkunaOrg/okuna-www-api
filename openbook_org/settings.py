@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'rest_framework',
     'openbook_org_contact',
+    'django_nose',
     'mailchimp3'
 ]
 
@@ -65,6 +66,23 @@ DATABASES = {
         'NAME': 'db.sqlite3',
     }
 }
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+if ENVIRONMENT == 'build':
+    NOSE_ARGS = [
+        '--cover-erase',
+        '--cover-package=.',
+        '--with-spec', '--spec-color',
+        '--with-coverage', '--cover-xml',
+        '--verbosity=1', '--nologcapture']
+else:
+    NOSE_ARGS = [
+        '--cover-erase',
+        '--cover-package=.',
+        '--with-spec', '--spec-color',
+        '--with-coverage', '--cover-html',
+        '--cover-html-dir=reports/cover', '--verbosity=1', '--nologcapture']
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
