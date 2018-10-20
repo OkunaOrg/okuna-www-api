@@ -16,6 +16,7 @@ sentry-sdk = "*"
 coverage = "*"
 django-nose = "*"
 nose = "*"
+pinocchio = "*"
 
 [requires]
 python_version = "3.6"
