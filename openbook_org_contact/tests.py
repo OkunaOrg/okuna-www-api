@@ -112,16 +112,10 @@ class MockMailChimpListMembers:
         resp = {"members": ["myemail@mydomain.com", "myemail2@mydomain.com", "myemail3@mydomain.com"]}
         return resp
 
-    def __init__(self, *args, **kwargs):
-        super(MockMailChimpListMembers, self).__init__(*args, **kwargs)
-
 
 class MockMailChimpLists:
 
     members = MockMailChimpListMembers()
-
-    def __init__(self, *args, **kwargs):
-        super(MockMailChimpLists, self).__init__(*args, **kwargs)
 
     def update_members(self, list_id=None, data=None):
         resp = {"email": "myemail@mydomain.com"}
@@ -131,9 +125,6 @@ class MockMailChimpLists:
 class MockMailChimp:
 
     lists = MockMailChimpLists()
-
-    def __init__(self, *args, **kwargs):
-        super(MockMailChimp, self).__init__(*args, **kwargs)
 
 
 class TestWaitlistSubscribeView(APITestCase):
