@@ -65,7 +65,7 @@ class Contact(APIView):
                         'remoteip': ip
                     })
                 except requests.exceptions.RequestException as e:
-                    raise APIException('Could verify captcha with google')
+                    raise APIException('Could not verify captcha with google')
 
                 captcha_data = captcha_response.json()
                 return captcha_data.get('success')
