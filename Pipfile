@@ -15,6 +15,7 @@ django-ipware = "*"
 sentry-sdk = "*"
 coverage = "*"
 django-nose = "*"
+nose = "*"
 
 [requires]
 python_version = "3.6"
