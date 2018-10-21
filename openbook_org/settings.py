@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-import raven
+import sentry_sdk
+sentry_sdk.init("https://b4e45e84fa73420d91989e9122d08e4d@sentry.io/1212322")
 
 from dotenv import load_dotenv, find_dotenv
 
@@ -41,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'rest_framework',
     'openbook_org_contact',
-    'raven.contrib.django.raven_compat'
+    'django_nose',
+    'mailchimp3'
 ]
 
 MIDDLEWARE = [
@@ -58,23 +60,39 @@ WSGI_APPLICATION = 'openbook_org.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
+    }
+}
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+if ENVIRONMENT == 'build':
+    NOSE_ARGS = [
+        '--cover-erase',
+        '--cover-package=.',
+        '--with-spec', '--spec-color',
+        '--with-coverage', '--cover-xml',
+        '--verbosity=1', '--nologcapture']
+else:
+    NOSE_ARGS = [
+        '--cover-erase',
+        '--cover-package=.',
+        '--with-spec', '--spec-color',
+        '--with-coverage', '--cover-html',
+        '--cover-html-dir=reports/cover', '--verbosity=1', '--nologcapture']
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = []
 
-# Sentry Config
-
-if IS_PRODUCTION_ENVIRONMENT:
-    RAVEN_CONFIG = {
-        'dsn': os.environ.get('SENTRY_DSN')
-    }
-
-# Mailgun config
+# Mail config 
 
 MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY')
+MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
 
 # Google re-captcha config
 

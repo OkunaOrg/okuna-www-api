@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from openbook_org_contact.views import Contact
-
+from openbook_org_contact.views import Contact, WaitlistSubscribeView
 
 urlpatterns = [
-    path('contact/', Contact.as_view())
+    path('contact/', Contact.as_view(), name='contact'),
+    path('waitlist/subscribe/', WaitlistSubscribeView.as_view(), name='waitlist_subscribe')
 ]

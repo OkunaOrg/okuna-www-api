@@ -1,24 +1,24 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [dev-packages]
 
-
-
 [packages]
-
 django = "*"
 python-dotenv = "*"
 djangorestframework = "*"
 requests = "*"
-raven = "*"
 django-ipware = "*"
-
+"mailchimp3" = "*"
+sentry-sdk = "*"
+coverage = "*"
+django-nose = "*"
+nose = "*"
+pinocchio = "*"
+colorama = "*"
+nose-exclude = "*"
 
 [requires]
-
 python_version = "3.6"
