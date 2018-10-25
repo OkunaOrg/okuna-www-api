@@ -93,6 +93,7 @@ AUTH_PASSWORD_VALIDATORS = []
 
 MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY')
 MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
+MAILCHIMP_WAITLIST_ID = os.environ.get('MAILCHIMP_WAITLIST_ID')
 
 # Google re-captcha config
 
