@@ -89,6 +89,31 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = []
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': './debug.log',
+            'formatter': 'simple'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'propagate': True,
+        }
+    }
+}
+
 # Mail config 
 
 MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY')
