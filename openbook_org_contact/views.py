@@ -85,7 +85,7 @@ class WaitlistSubscribeView(APIView):
                 'members': [
                     {
                         'email_address': serializer.validated_data['email'],
-                        'status': 'subscribed'
+                        'status_if_new': 'pending'
                     }
                 ]
             })
