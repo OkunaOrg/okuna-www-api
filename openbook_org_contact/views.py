@@ -85,12 +85,12 @@ class WaitlistSubscribeView(APIView):
                 'members': [
                     {
                         'email_address': serializer.validated_data['email'],
-                        'status_if_new': 'pending'
+                        'status': 'pending'
                     }
                 ]
             })
 
-            total = client.lists.members.all(MAILCHIMP_WAITLIST_ID, get_all=True)
+            total = client.lists.members.all(MAILCHIMP_WAITLIST_ID, status='subscribed')
             count = len(total['members'])
 
         except requests.exceptions.RequestException as e:
