@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import sentry_sdk
+
 sentry_sdk.init("https://b4e45e84fa73420d91989e9122d08e4d@sentry.io/1212322")
 
 from dotenv import load_dotenv, find_dotenv
@@ -33,9 +34,13 @@ DEBUG = not IS_PRODUCTION_ENVIRONMENT
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # Hosts
-
-ALLOWED_HOSTS = [] if not IS_PRODUCTION_ENVIRONMENT else [os.environ.get('DJANGO_ALLOWED_HOSTNAME')]
-
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
+if IS_PRODUCTION_ENVIRONMENT:
+    if not ALLOWED_HOSTS:
+        raise NameError('ALLOWED_HOSTS environment variable is required when running on a production environment')
+    ALLOWED_HOSTS = [allowed_host.strip() for allowed_host in ALLOWED_HOSTS.split(',')]
+else:
+    ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
