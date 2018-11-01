@@ -25,7 +25,6 @@ durationpy==0.5
 future==0.16.0
 hjson==3.0.1
 idna==2.6
-Jinja2==2.10
 jmespath==0.9.3
 jsonschema==2.6.0
 kappa==0.6.0
