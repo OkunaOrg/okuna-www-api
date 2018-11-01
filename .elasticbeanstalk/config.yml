@@ -3,6 +3,7 @@ branch-defaults:
     environment: $CIRCLE_BRANCH-openbook-us-api
 global:
   application_name: openbook-us-api
+  default_region: eu-central-1
   default_ec2_keyname: null
   default_platform: python-3.6
   include_git_submodules: true
