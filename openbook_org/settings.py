@@ -41,9 +41,10 @@ ALLOWED_HOSTS = [] if not IS_PRODUCTION_ENVIRONMENT else [os.environ.get('DJANGO
 INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'rest_framework',
-    'openbook_org_contact',
     'django_nose',
-    'mailchimp3'
+    'mailchimp3',
+    'openbook_org_contact',
+    'openbook_org_common',
 ]
 
 MIDDLEWARE = [
@@ -114,7 +115,7 @@ LOGGING = {
     }
 }
 
-# Mail config 
+# Mail config
 
 MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY')
 MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
