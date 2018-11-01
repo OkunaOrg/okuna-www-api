@@ -69,7 +69,7 @@ jobs:
         command: |
           python3 -m venv venv
           . venv/bin/activate
-          pip install -r jinja2
+          pip install jinja2
     - save_cache:
         paths:
         - ./venv
