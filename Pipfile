@@ -19,6 +19,7 @@ nose = "*"
 pinocchio = "*"
 colorama = "*"
 nose-exclude = "*"
+awsebcli = "*"
 
 [requires]
 python_version = "3.6"
