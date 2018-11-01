@@ -75,7 +75,7 @@ jobs:
 
     - run:
         name: Deploying
-        command: eb deploy $CIRCLE_BRANCH-$APPLICATION_NAME
+        command: eb deploy $CIRCLE_BRANCH-openbook-us-api
 
 workflows:
   version: 2
