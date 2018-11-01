@@ -81,6 +81,7 @@ workflows:
   version: 2
   build:
     jobs:
+    - build
     - deploy:
         filters:
           branches:
