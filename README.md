@@ -1,8 +1,8 @@
-<img alt="Open book logo" src="https://i.snag.gy/conKBO.jpg" width="200">
+<img alt="Open book logo" src="https://snag.gy/yWbLr1.jpg" width="200">
 
-![Human Friendly](https://img.shields.io/badge/human-friendly-brightgreen.svg) ![Privacy](https://img.shields.io/badge/privacy-first-690ddc.svg) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/openbook-org/Lobby?source=orgpage)
+[![CircleCI](https://circleci.com/gh/OpenbookOrg/openbook-org-api.svg?style=svg)](https://circleci.com/gh/OpenbookOrg/openbook-org-api) [![Maintainability](https://api.codeclimate.com/v1/badges/fea3aa6354f1ea11fb21/maintainability)](https://codeclimate.com/github/OpenbookOrg/openbook-org-api/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/fea3aa6354f1ea11fb21/test_coverage)](https://codeclimate.com/github/OpenbookOrg/openbook-org-api/test_coverage) [![gitmoji badge](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square)](https://github.com/carloscuesta/gitmoji)
 
-The backend code for [api.open-book.org](https://api.open-book.org).
+The code for [api.open-book.org](https://api.open-book.org).
 
 ## Table of contents
 
