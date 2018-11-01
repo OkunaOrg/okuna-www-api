@@ -57,4 +57,3 @@ wcwidth==0.1.7
 websocket-client==0.53.0
 Werkzeug==0.14.1
 wsgi-request-logger==0.4.6
-zappa==0.47.0
