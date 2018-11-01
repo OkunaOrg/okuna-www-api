@@ -72,10 +72,12 @@ jobs:
           sudo apt-get -y -qq update
           sudo apt-get install python-pip python-dev build-essential
           sudo pip install awsebcli --upgrade
-
+    - make_eb_config:
+        name: Make EB Config
+        command: python utils/make_eb_config.py --name=$APPLICATION_NAME --region=$AWS_DEFAULT_REGION
     - run:
         name: Deploying
-        command: eb deploy $CIRCLE_BRANCH-openbook-us-api
+        command: eb deploy $CIRCLE_BRANCH-$APPLICATION_NAME
 
 workflows:
   version: 2
