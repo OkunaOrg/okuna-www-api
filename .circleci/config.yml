@@ -1,0 +1,98 @@
+# Python CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-python/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+    # specify the version you desire here
+    # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
+    - image: circleci/python:3.6.1
+
+    # Specify service dependencies here if necessary
+    # CircleCI maintains a library of pre-built images
+    # documented at https://circleci.com/docs/2.0/circleci-images/
+    # - image: circleci/postgres:9.4
+
+    working_directory: ~/repo
+
+    steps:
+    - checkout
+
+    # Download and cache dependencies
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "requirements.txt" }}
+        # fallback to using the latest cache if no exact match is found
+        - v1-dependencies-
+
+    - run:
+        name: install dependencies
+        command: |
+          python3 -m venv venv
+          . venv/bin/activate
+          pip install -r requirements.txt
+    - save_cache:
+        paths:
+        - ./venv
+        key: v1-dependencies-{{ checksum "requirements.txt" }}
+
+    - run:
+        name: Setup Code Climate test-reporter
+        command: |
+          # download test reporter as a static binary
+                   curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+                   chmod +x ./cc-test-reporter
+    # run tests!
+    # this example uses Django's built-in test-runner
+    # other common Python testing frameworks include pytest and nose
+    # https://pytest.org
+    # https://nose.readthedocs.io
+    - run:
+        name: run tests
+        command: |
+          . venv/bin/activate
+          # notify Code Climate of a pending test report using `before-build`
+          ./cc-test-reporter before-build
+          python manage.py test
+          # upload test report to Code Climate using `after-build`
+          ./cc-test-reporter after-build --exit-code $?
+  deploy:
+    working_directory: ~/repo
+    docker:
+    - image: circleci/python:3.6.1
+    steps:
+    - checkout
+    - run:
+        name: Install utils dependencies
+        command: |
+          python3 -m venv venv
+          . venv/bin/activate
+          pip install jinja2
+    - run:
+        name: Installing deployment dependencies
+        working_directory: /
+        command: |
+          sudo apt-get -y -qq update
+          sudo apt-get install python-pip python-dev build-essential
+          sudo pip install awsebcli --upgrade
+    - run:
+        name: Make EB Config
+        command: |
+          . venv/bin/activate
+          python utils/make_eb_config.py --name=$APPLICATION_NAME --region=$AWS_DEFAULT_REGION
+    - run:
+        name: Deploying
+        command: eb deploy $CIRCLE_BRANCH-$APPLICATION_NAME
+
+workflows:
+  version: 2
+  build:
+    jobs:
+    - build
+    - deploy:
+        filters:
+          branches:
+            only:
+            - master
