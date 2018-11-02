@@ -14,3 +14,9 @@ global:
   repository: null
   sc: git
   workspace_type: Application
+Resources:
+  AWSEBAutoScalingGroup:
+    Type: "AWS::AutoScaling::AutoScalingGroup"
+    Properties:
+      HealthCheckType: "ELB"
+      HealthCheckGracePeriod: "600"
