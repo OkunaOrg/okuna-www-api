@@ -1,0 +1,2 @@
+[bandit]
+exclude: ./openbook_org_contact/tests.py,./openbook_org_common/tests.py,./venv
