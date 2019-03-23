@@ -11,6 +11,7 @@ import requests
 from mailchimp3 import MailChimp
 import logging
 import json
+from django.core.cache import cache
 
 logger = logging.getLogger(__name__)
 
@@ -90,8 +91,14 @@ class WaitlistSubscribeView(APIView):
                 ]
             })
 
-            response = client.lists.members.all(MAILCHIMP_WAITLIST_ID, status='subscribed', count=0)
-            count = response['total_items']
+            local_cache = cache
+            count = local_cache.get('waitlist_count')
+            if not count:
+                response = client.lists.members.all(MAILCHIMP_WAITLIST_ID, status='subscribed', count=0)
+                count = response['total_items']
+                local_cache.set('waitlist_count', count)
+
+            local_cache.incr('waitlist_count')
 
         except requests.exceptions.RequestException as e:
             raise APIException('Could not subscribe to waitlist')
