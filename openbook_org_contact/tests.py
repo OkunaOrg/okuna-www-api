@@ -108,8 +108,8 @@ class TestContactView(APITestCase):
 
 class MockMailChimpListMembers:
 
-    def all(self, id, status, get_all, fields):
-        resp = {"members": ["myemail@mydomain.com", "myemail2@mydomain.com", "myemail3@mydomain.com"]}
+    def all(self, id, status, count):
+        resp = {"total_items": 3, "members": ["myemail@mydomain.com", "myemail2@mydomain.com", "myemail3@mydomain.com"]}
         return resp
 
 
