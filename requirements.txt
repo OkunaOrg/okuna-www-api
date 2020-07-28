@@ -58,5 +58,5 @@ Unidecode==1.0.22
 urllib3==1.24.2
 wcwidth==0.1.7
 websocket-client==0.53.0
-Werkzeug==0.15.0
+Werkzeug==0.15.5
 wsgi-request-logger==0.4.6
