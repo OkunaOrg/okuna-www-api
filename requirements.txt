@@ -2,6 +2,7 @@
 asgiref==3.2.10
 attrs==20.2.0
 awsebcli==3.19.0
+bandit==1.6.2
 bcrypt==3.2.0
 blessed==1.17.10
 botocore==1.17.60
@@ -23,6 +24,8 @@ dockerpty==0.4.1
 docopt==0.6.2
 docutils==0.15.2
 future==0.16.0
+gitdb==4.0.5
+gitpython==3.1.8
 idna==2.7
 importlib-metadata==1.7.0 ; python_version < '3.8'
 jmespath==0.10.0
@@ -32,6 +35,7 @@ nose-exclude==0.5.0
 nose==1.3.7
 paramiko==2.7.2
 pathspec==0.5.9
+pbr==5.5.0
 pinocchio==0.4.2
 pycparser==2.20
 pynacl==1.4.0
@@ -44,7 +48,9 @@ requests==2.20.1
 semantic-version==2.5.0
 sentry-sdk==0.17.4
 six==1.11.0
+smmap==3.0.4
 sqlparse==0.3.1
+stevedore==3.2.2
 termcolor==1.1.0
 texttable==1.6.3
 urllib3==1.24.3 ; python_version != '3.4'
