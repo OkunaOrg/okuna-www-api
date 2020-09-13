@@ -20,6 +20,8 @@ pinocchio = "*"
 colorama = "*"
 nose-exclude = "*"
 awsebcli = "*"
+bandit = "*"
+safety = "*"
 
 [requires]
 python_version = "3.6"
