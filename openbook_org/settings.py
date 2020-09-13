@@ -73,9 +73,16 @@ WSGI_APPLICATION = 'openbook_org.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
-DATABASES = {
-}
+if IS_PRODUCTION_ENVIRONMENT:
+    DATABASES = {
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
+    }
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
