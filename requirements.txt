@@ -11,6 +11,7 @@ cement==2.8.2
 certifi==2020.6.20
 cffi==1.14.2
 chardet==3.0.4
+click==7.1.2
 colorama==0.4.3
 coverage==5.2.1
 cryptography==3.1
@@ -23,6 +24,7 @@ docker[ssh]==4.3.1
 dockerpty==0.4.1
 docopt==0.6.2
 docutils==0.15.2
+dparse==0.5.1
 future==0.16.0
 gitdb==4.0.5
 gitpython==3.1.8
@@ -33,18 +35,21 @@ jsonschema==3.2.0
 mailchimp3==3.0.14
 nose-exclude==0.5.0
 nose==1.3.7
+packaging==20.4
 paramiko==2.7.2
 pathspec==0.5.9
 pbr==5.5.0
 pinocchio==0.4.2
 pycparser==2.20
 pynacl==1.4.0
+pyparsing==2.4.7
 pyrsistent==0.17.2
 python-dateutil==2.8.0
 python-dotenv==0.14.0
 pytz==2020.1
 pyyaml==5.3.1
 requests==2.20.1
+safety==1.9.0
 semantic-version==2.5.0
 sentry-sdk==0.17.4
 six==1.11.0
@@ -53,6 +58,7 @@ sqlparse==0.3.1
 stevedore==3.2.2
 termcolor==1.1.0
 texttable==1.6.3
+toml==0.10.1
 urllib3==1.24.3 ; python_version != '3.4'
 wcwidth==0.1.9
 websocket-client==0.57.0
