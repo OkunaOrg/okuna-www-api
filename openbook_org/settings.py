@@ -12,15 +12,23 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import sentry_sdk
-
-sentry_sdk.init("https://b4e45e84fa73420d91989e9122d08e4d@sentry.io/1212322")
-
 from dotenv import load_dotenv, find_dotenv
+from sentry_sdk.integrations.django import DjangoIntegration
 
 load_dotenv(find_dotenv(), verbose=True)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+sentry_sdk.init(
+    dsn=os.environ.get('SENTRY_DSN'),
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
 
 # Environment flags
 ENVIRONMENT = os.environ.get('ENVIRONMENT')
